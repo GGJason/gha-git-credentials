@@ -43,10 +43,22 @@ Actor would also be overridden when pushing to a repo cloud other than GitHub.
 
 ## Inputs
 
-- `name`: value for git config user.name (default: `GitHub Action`)
-- `email`: value for git config user.email (default: `github-action@users.noreply.github.com`)
-- `actor`: value used to construct GIT_USER (default: **github.actor**)
-- `token`: value for git config user.password and GIT_USER
+| property name | value type | default value | description |
+| ---           | ---        | ---           | ---         |
+| `global`      | boolean    | false         | global git config used to assign user.name and user.email when true |
+| `name`        | string     | `GitHub Action` | value for git config user.name |
+| `email`       | string     | `github-action@users.noreply.github.com` | value for git config user.email |
+| `actor`       | string     | github.actor  | value used to construct GIT_USER |
+| `token`       | string     | **n/a**       | **required** value for git config user.password and GIT_USER |
+
+The minimally required action configuration requires a token being explicitly specified.
+Example below uses secrets.GITHUB_TOKEN available to the workflow as a token source.
+
+```
+- uses: oleksiyrudenko/gha-git-credentials@v2-latest
+  with:
+    token: '${{ secrets.GITHUB_TOKEN }}'
+```
 
 ## Outputs
 
@@ -70,9 +82,14 @@ jobs:
     - run: |
         yarn run build
         yarn run deploy
-    # publish to a branch in different repo using a PAT generated on that other repo
-    - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+    # Publish to a branch in a different repo
+    # using a PAT generated on that other repo.
+    # Option `global` is set to true as the deployment script may create 
+    # a temporary local repo for a build and we want it to reuse git user settings.
+    # Option `actor` is assigned as per that different repo cloud user.
+    - uses: oleksiyrudenko/gha-git-credentials@v2.1
       with:
+        global: true
         name: 'Oleksiy Rudenko'
         email: 'oleksiy.rudenko@domain.com'
         actor: 'OleksiyRudenko'
@@ -81,6 +98,9 @@ jobs:
         git remote add web-central https://github.com/some-organization/website.git
         yarn run deploy web-central/master
 ```
+
+You may want to set the `global` option true when committing
+to multiple local repositories during the workflow run is anticipated.
 
 Check [What version to use?](#what-version-to-use) to choose proper
 action version reference.
