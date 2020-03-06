@@ -3,10 +3,9 @@
 [GitHub Action](https://github.com/features/actions) for setting up
 git credentials.
 
-This project deployment workflow uses this action to build its own distribution package.
-
-This can be useful when workflow provides for creating commits
+This action can be useful when workflow provides for creating commits
 (e.g. when publishing content) and/or pushing commits to remote repos.
+[Action on the marketplace](https://github.com/marketplace/actions/configure-git-credentials).
 
 Default values would work for the most cases.
 However **token** parameter must be passed to the action explicitly.
@@ -23,6 +22,8 @@ with the always-available GitHub Token `{{ secrets.GITHUB_TOKEN }}`.
 You may also want to override default git user name and email.
 
 Actor would also be overridden when pushing to a repo cloud other than GitHub.
+
+This project deployment workflow uses very this action to build its own distribution package.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -93,14 +94,18 @@ jobs:
         name: 'Oleksiy Rudenko'
         email: 'oleksiy.rudenko@domain.com'
         actor: 'OleksiyRudenko'
-        token: '${{ secrets.GH_PAT_WEB_CENTRAL }}'
+        token: '${{ secrets.GL_PAT_WEB_CENTRAL }}'
     - run: |
-        git remote add web-central https://github.com/some-organization/website.git
+        git remote add web-central https://gitlab.com/some-organization/website.git
         yarn run deploy web-central/master
 ```
 
 You may want to set the `global` option true when committing
 to multiple local repositories during the workflow run is anticipated.
+
+> Note that the second use of `gha-git-credentials` refers to a specific
+> version of the action. In fact `@v2-latest` would work here quite fine
+> and is a better approach.
 
 Check [What version to use?](#what-version-to-use) to choose proper
 action version reference.
@@ -121,7 +126,7 @@ So, in this action the options are:
 - `<branch-name>` - version as per given branch name, useful for testing 
 
 Whenever non-breaking changes introduced, having backward compatibility secured,
-a patch version is released and relevant `vX-latest` tag is moved to point
+a patch version is released and the relevant `vX-latest` tag is moved to point
 at the latest release within current major version.
 
 Using `vX-latest` is a recommended choice.
