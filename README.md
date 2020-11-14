@@ -76,7 +76,7 @@ on:
 jobs:
   publish:
     - uses: actions/checkout@v2
-    # publish to a branch in current repo using GITHUB_TOKEN and other default settings
+    # Publish to a branch in current repo using GITHUB_TOKEN and other default settings.
     - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
@@ -104,7 +104,7 @@ You may want to set the `global` option true when committing
 to multiple local repositories during the workflow run is anticipated.
 
 > Note that the second use of `gha-git-credentials` refers to a specific
-> version of the action. In fact `@v2-latest` would work here quite fine
+> version of the action (`@v2.1`). In fact `@v2-latest` would work here quite fine
 > and is a better approach.
 
 Check [What version to use?](#what-version-to-use) to choose proper
