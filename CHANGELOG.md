@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 No changes planned
 
-## [v2.1] - 2020-11-15
+## [v2.1.0] - 2020-11-15
 ### Added
 - Add `global` option to configure global git user, name and password.
   Default value is `false` for backward compatibility

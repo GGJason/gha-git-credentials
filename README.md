@@ -34,6 +34,7 @@ This project deployment workflow uses very this action to build its own distribu
 - [Usage Example](#usage-example)
 - [Versions](#versions)
   - [What version to use?](#what-version-to-use)
+  - [v2.1.0](#v210)
   - [v2](#v2)
   - [v1](#v1)
 - [License](#license)
@@ -134,7 +135,7 @@ Using `vX-latest` is a recommended choice.
 Below are key features of the releases.
 Check [CHANGELOG](./CHANGELOG.md) for details. 
 
-### v2.1
+### v2.1.0
 
 Introduce `global` option to configure global git user name, email and password.
 Default is `false` for backward compatibility.
