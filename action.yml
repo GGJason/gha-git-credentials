@@ -7,7 +7,7 @@ branding:
   color: 'blue'
 inputs:
   global:
-    description: 'Git User Name (default: "GitHub Action")'
+    description: 'Configure global git user name, email, password (default: false)'
     required: false
     default: 'false'
   email:
