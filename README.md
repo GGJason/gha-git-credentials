@@ -46,11 +46,11 @@ This project deployment workflow uses very this action to build its own distribu
 
 | property name | value type | default value | description |
 | ---           | ---        | ---           | ---         |
-| `global`      | boolean    | false         | global git config used to assign user.name and user.email when true |
+| `global`      | boolean    | false         | global git config used to assign git user name, email and password when true |
 | `name`        | string     | `GitHub Action` | value for git config user.name |
 | `email`       | string     | `github-action@users.noreply.github.com` | value for git config user.email |
 | `actor`       | string     | github.actor  | value used to construct GIT_USER |
-| `token`       | string     | **n/a**       | **required** value for git config user.password and GIT_USER |
+| `token`       | string     | **n/a**       | **required** value for git user.password and GIT_USER |
 
 The minimally required action configuration requires a token being explicitly specified.
 Example below uses secrets.GITHUB_TOKEN available to the workflow as a token source.
@@ -134,6 +134,11 @@ Using `vX-latest` is a recommended choice.
 Below are key features of the releases.
 Check [CHANGELOG](./CHANGELOG.md) for details. 
 
+### v2.1
+
+Introduce `global` option to configure global git user name, email and password.
+Default is `false` for backward compatibility.
+
 ### v2
 Changed the way `GIT_USER` env var is being assigned.
 
@@ -142,8 +147,8 @@ Reason:
 
 ### v1
 Features:
-- Configurable user name and user email for commits created by a custom action
-- Configurable actor and token (GIT_USER) to push updates from a custom action
+- Configurable git user name, email and password for commits created in a course of the workflow
+- Configurable actor and token (GIT_USER) to push updates from a workflow
 
 ## License
 
