@@ -6,8 +6,8 @@ _GIT_GLOBAL_OPTION=''
 IF ${INPUT_GLOBAL}; then
   _GIT_GLOBAL_OPTION='--global'
 fi
-INPUT_EMAIL=${INPUT_EMAIL:-'github-action@users.noreply.github.com'}
-INPUT_NAME=${INPUT_NAME:-'GitHub Action'}
+INPUT_EMAIL="${INPUT_EMAIL:-'github-action@users.noreply.github.com'}"
+INPUT_NAME="${INPUT_NAME:-'GitHub Action'}"
 INPUT_ACTOR=${INPUT_ACTOR:-${GITHUB_ACTOR}}
 
 git config $_GIT_GLOBAL_OPTION user.email "${INPUT_EMAIL}"
